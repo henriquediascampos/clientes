@@ -1,1 +1,5 @@
-rootProject.name = 'clientes'
+rootProject.name = 'clientsback'
+
+include 'clientsback-liquibase'
+include 'clientsback-common'
+include 'clientsback-controller', 'clientsback-service', 'clientsback-entity'

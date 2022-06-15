@@ -1,0 +1,11 @@
+databaseChangeLog:
+    - includeAll:
+          path: liquibase/versions/1.0/00
+
+    - changeSet:
+          comment: TAG database 1.0.0
+          id: 2021-11-03-tag-1.0.0
+          author: Henrique Campos
+          changes:
+              - tagDatabase:
+                    tag: 1.0.0

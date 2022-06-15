@@ -11,6 +11,6 @@ import io.github.henriquediascampos.clientsback.entity.user.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
 
-    Optional<User> findByUserName(String username);
+    Optional<User> findByUsername(String username);
 
 }

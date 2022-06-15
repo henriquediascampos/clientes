@@ -2,6 +2,7 @@ package io.github.henriquediascampos.clientsback.service.user;
 
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,13 +13,17 @@ import io.github.henriquediascampos.clientsback.service.abstracts.AbstractServic
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class UserService extends AbstractService<User, UUID> implements UserDetailsService {
 
-    private UserDAO userDAO;
+    @Autowired private UserDAO userDAO;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDAO.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException("Usuário nao encontrado!") );
+        final var user = userDAO.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuário nao encontrado!") );
+        return org.springframework.security.core.userdetails.User.builder()
+            .username(user.getUsername())
+            .password(user.getPassword())
+            .roles("USER")
+            .build();
     }
 }

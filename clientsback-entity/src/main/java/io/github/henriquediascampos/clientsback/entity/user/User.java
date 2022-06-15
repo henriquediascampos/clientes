@@ -1,5 +1,6 @@
 package io.github.henriquediascampos.clientsback.entity.user;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user_account")
 public class User extends AbstractEntity {
 
-    private String name;
+    @Column(name = "name")
+    private String username;
     private String password;
 }

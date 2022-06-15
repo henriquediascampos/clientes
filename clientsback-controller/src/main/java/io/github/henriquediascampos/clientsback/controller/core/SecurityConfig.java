@@ -16,10 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication()
-                .withUser("fulano")
-                .password("123")
-                .roles("USER");
+        auth
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
+
     }
 
     @Bean

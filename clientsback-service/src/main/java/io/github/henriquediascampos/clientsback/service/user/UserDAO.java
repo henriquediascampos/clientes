@@ -1,5 +1,6 @@
 package io.github.henriquediascampos.clientsback.service.user;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Repository
 public class UserDAO extends AbstractDAO<User, UUID> {
+    private UserRepository userRepository;
 
-    private UserRepository repository;
+    public Optional<User> findByUserName(String username) {
+        return userRepository.findByUserName(username);
+    }
 
 }
